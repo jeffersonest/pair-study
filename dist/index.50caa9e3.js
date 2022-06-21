@@ -533,8 +533,7 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"aNgPG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _pokemonList = require("../components/pokemonList");
-var _pokemonListDefault = parcelHelpers.interopDefault(_pokemonList);
+parcelHelpers.defineInteropFlag(exports);
 async function getPokemon(count) {
     let pokemons = [];
     if (count > 0) {
@@ -552,20 +551,8 @@ async function getPokemon(count) {
         return pokemons;
     } else return [];
 }
-(async ()=>{
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-        get: (searchParams, prop)=>searchParams.get("qtd")
-    });
-    // Get the value of "some_key" in eg
-    // "https://example.com/?some_key=some_value" 
-    let value = params.qtd;
-    const pokemonList = await getPokemon(value === 0 ? 1 : value);
-    let app = document.getElementById("app");
-    if (value <= 0 && value >= 898) window.alert("insira uma quantidade valida");
-    else (0, _pokemonListDefault.default)(app, pokemonList);
-})();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../components/pokemonList":"7legk"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -595,77 +582,6 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"7legk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _pokeball = require("./pokeball");
-var _pokeballDefault = parcelHelpers.interopDefault(_pokeball);
-function listComponent(element, pokemonList) {
-    let pokemonsLi = ``;
-    let title = document.createElement("h1");
-    title.textContent += "Listagem de pokemons";
-    let pokemonUl = document.createElement("ul");
-    title.classList.add("title");
-    title.classList.add("text-center");
-    title.classList.add("mb-4");
-    title.classList.add("mt-4");
-    pokemonUl.classList.add("grid");
-    pokemonUl.classList.add("pokemons-list");
-    pokemonList.map((pokemon)=>{
-        pokemonsLi += `
-            <li class="pokemon-item row col-4 shadow mb-4">
-                <div class="pokemon-item-header">
-                    <span class="pokemon-item-id" id="pokemon-${pokemon.id}">
-                    ${(0, _pokeballDefault.default)(pokemon.id)}
-                    </span>
-                    <p class="pokemon-item-name">${pokemon.name}</p>                
-                </div>
-                <img src="${pokemon.image}" class="pokemon-item-image" />
-
-            </li>
-        `;
-    });
-    pokemonUl.insertAdjacentHTML("afterbegin", pokemonsLi);
-    element.insertAdjacentElement("beforeend", title);
-    element.insertAdjacentElement("beforeend", pokemonUl);
-    // let pokeId = document.className('pokemon-item-id')
-    // pokeId.
-    console.log(element);
-}
-exports.default = listComponent;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./pokeball":"dBbrk"}],"dBbrk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function PokeballComponent(_ballNumber) {
-    let ballContainer = document.createElement("span");
-    let ballWhite = document.createElement("span");
-    let ballRed = document.createElement("span");
-    let ballBlack = document.createElement("span");
-    let ballSeparator = document.createElement("span");
-    let ballWhiteSmall = document.createElement("span");
-    let ballWhiteSmallBordered = document.createElement("span");
-    let ballNumber = document.createElement("span");
-    ballContainer.classList.add("pokeball-container");
-    ballWhite.classList.add("pokeball-white");
-    ballRed.classList.add("pokeball-red");
-    ballBlack.classList.add("pokeball-black");
-    ballSeparator.classList.add("pokeball-separator");
-    ballWhiteSmall.classList.add("pokeball-white-small");
-    ballWhiteSmallBordered.classList.add("pokeball-white-small-bordered");
-    ballNumber.classList.add("pokeball-number");
-    ballNumber.innerHTML = _ballNumber.toString();
-    ballContainer.insertAdjacentElement("beforeend", ballWhite);
-    ballContainer.insertAdjacentElement("beforeend", ballRed);
-    ballContainer.insertAdjacentElement("beforeend", ballBlack);
-    ballContainer.insertAdjacentElement("beforeend", ballSeparator);
-    ballContainer.insertAdjacentElement("beforeend", ballWhiteSmall);
-    ballContainer.insertAdjacentElement("beforeend", ballWhiteSmallBordered);
-    ballContainer.insertAdjacentElement("beforeend", ballNumber);
-    console.log("dsadsa", ballContainer);
-}
-exports.default = PokeballComponent;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["jcU4y","aNgPG"], "aNgPG", "parcelRequiree784")
+},{}]},["jcU4y","aNgPG"], "aNgPG", "parcelRequiree784")
 
 //# sourceMappingURL=index.50caa9e3.js.map

@@ -1,22 +1,10 @@
-import { Pokemon } from "../types/pokemon.type";
+import {Pokemon} from "../types/pokemon.type";
 import PokeballComponent from "./pokeball";
 
-export default function listComponent (element: Element, pokemonList: Array <Pokemon> ){
-    
+
+export default function listComponent (pokemonList: Array <Pokemon>){
 
     let pokemonsLi: string = ``;
-    let title: Element = document.createElement('h1');
-
-    title.textContent += "Listagem de pokemons";
-
-    let pokemonUl = document.createElement('ul')
-
-    title.classList.add('title');
-    title.classList.add('text-center');
-    title.classList.add('mb-4');
-    title.classList.add('mt-4');
-    pokemonUl.classList.add('grid');
-    pokemonUl.classList.add('pokemons-list');
 
     pokemonList.map(pokemon => {
         pokemonsLi += `
@@ -28,18 +16,12 @@ export default function listComponent (element: Element, pokemonList: Array <Pok
                     <p class="pokemon-item-name">${pokemon.name}</p>                
                 </div>
                 <img src="${pokemon.image}" class="pokemon-item-image" />
-
             </li>
-        ` 
-
+        `
     })
-    pokemonUl.insertAdjacentHTML("afterbegin", pokemonsLi);
-    
-    element.insertAdjacentElement('beforeend', title);
-    element.insertAdjacentElement("beforeend", pokemonUl);
 
-    // let pokeId = document.className('pokemon-item-id')
-   // pokeId.
-    
-    console.log(element);
+    return `
+        <h1 class="title">Pokemons</h1>
+        <ul class="grid pokemons-list">${pokemonsLi}</ul>
+    `
 }

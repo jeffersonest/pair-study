@@ -4,10 +4,10 @@ import headerComponent from "./header";
 import LoaderComponent from "./loaderComponent";
 
 (async ()=>{
-        const app = document.getElementById('app');
+        const app: any = document.getElementById('app');
 
         app.insertAdjacentElement('afterbegin', LoaderComponent())
-        const loader = document.getElementById('loader');
+        const loader: any = document.getElementById('loader');
 
         app.insertAdjacentHTML('beforeend', `
            ${headerComponent()} 

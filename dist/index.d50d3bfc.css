@@ -6,10 +6,6 @@
   font-family: Arial Black, serif;
 }
 
-body {
-  background-color: red;
-}
-
 .loader {
   height: 100%;
   width: 100%;
@@ -52,11 +48,16 @@ body {
 }
 
 .pokemon-item {
+  cursor: pointer;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   display: flex;
   position: relative;
+}
+
+.pokemon-item:hover .info-tooltip-container {
+  display: block;
 }
 
 .pokemon-item-header {
@@ -182,6 +183,33 @@ header {
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 2.8px 2.2px #00000009, 0 6.7px 5.3px #0000000c, 0 12.5px 10px #0000000f, 0 22.3px 17.9px #00000012, 0 41.8px 33.4px #00000016, 0 100px 80px #0000001f;
+}
+
+.info-tooltip-container {
+  width: 70%;
+  height: 150px;
+  text-align: center;
+  z-index: 20;
+  background: #ccc;
+  border-radius: 16px;
+  padding: 10px;
+  display: none;
+  position: absolute;
+  right: -40%;
+}
+
+.info-tooltip-container:after {
+  content: "";
+  width: 0;
+  height: 0;
+  z-index: 1;
+  border: 15px solid #0000;
+  border-top-width: 0;
+  border-bottom: 25px solid #ccc;
+  position: absolute;
+  top: 45%;
+  left: -20px;
+  transform: rotate(270deg);
 }
 
 /*# sourceMappingURL=index.d50d3bfc.css.map */

@@ -549,14 +549,16 @@ var _loaderComponentDefault = parcelHelpers.interopDefault(_loaderComponent);
         `);
 })();
 
-},{"./pokemonList":"7legk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./header":"h4YWK","./loaderComponent":"i9cyE"}],"7legk":[function(require,module,exports) {
+},{"./pokemonList":"7legk","./header":"h4YWK","./loaderComponent":"i9cyE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7legk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _pokeball = require("./pokeball");
 var _pokeballDefault = parcelHelpers.interopDefault(_pokeball);
 var _pokemonService = require("../core/pokemon.service");
 var _pokemonServiceDefault = parcelHelpers.interopDefault(_pokemonService);
-async function listComponent(loader, app) {
+var _tooltip = require("./tooltip");
+var _tooltipDefault = parcelHelpers.interopDefault(_tooltip);
+async function listComponent(loader) {
     const params = new Proxy(new URLSearchParams(window.location.search), {
         get: (searchParams, prop)=>searchParams.get("qtd")
     });
@@ -577,17 +579,17 @@ async function listComponent(loader, app) {
                     <p class="pokemon-item-name">${pokemon.name}</p>                
                 </div>
                 <img src="${pokemon.image}" class="pokemon-item-image" />
+                ${(0, _tooltipDefault.default)(pokemon)}
             </li>
         `;
     });
-    return `
-        <h1 class="title">Pokemons</h1>
+    return `       
         <ul class="grid pokemons-list">${pokemonsLi}</ul>
     `;
 }
 exports.default = listComponent;
 
-},{"./pokeball":"dBbrk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/pokemon.service":"iXYt4"}],"dBbrk":[function(require,module,exports) {
+},{"./pokeball":"dBbrk","../core/pokemon.service":"iXYt4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./tooltip":"kYoWR"}],"dBbrk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function PokeballComponent(_ballNumber) {
@@ -645,17 +647,50 @@ async function getPokemon(count) {
             const API_URL = `https://pokeapi.co/api/v2/pokemon/${i}`;
             const response = await fetch(API_URL);
             const pokeData = await response.json();
-            const { name , id  } = pokeData;
+            console.log(pokeData);
+            const { name , id , weight , height , types  } = pokeData;
             pokemons.push({
                 name,
                 id,
-                image: `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`
+                image: `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`,
+                weight,
+                height,
+                types
             });
         }
         return pokemons;
     } else return [];
 }
 exports.default = getPokemon;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kYoWR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function Tooltip(pokemon) {
+    let itemString = "";
+    pokemon.types?.map((item)=>{
+        itemString += item.type.name;
+    });
+    return `
+        <div class="info-tooltip-container shadow">
+            <div class="info-tooltip-container-top">
+             <h2>
+             ${itemString}</h2>
+            </div>
+            <div class="info-tooltip-container-middle">
+                <p>${pokemon.id}</p>
+                <h2>${pokemon.name}</h2>
+            </div>
+          
+            <div class="info-tooltip-container-bottom">
+                <span>Largura ${pokemon.weight}</span>
+                <span>Altura ${pokemon.height}</span>
+            </div>
+        
+        </div>
+    `;
+}
+exports.default = Tooltip;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h4YWK":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");

@@ -1,9 +1,10 @@
 import {Pokemon} from "../types/pokemon.type";
 import PokeballComponent from "./pokeball";
 import getPokemon from "../core/pokemon.service";
+import Tooltip from "./tooltip";
 
 
-export default async function listComponent (loader: Element, app: Element){
+export default async function listComponent (loader: Element){
 
     const params: any = new Proxy(new URLSearchParams(window.location.search),
         {
@@ -31,12 +32,12 @@ export default async function listComponent (loader: Element, app: Element){
                     <p class="pokemon-item-name">${pokemon.name}</p>                
                 </div>
                 <img src="${pokemon.image}" class="pokemon-item-image" />
+                ${Tooltip(pokemon)}
             </li>
         `
     })
 
-    return `
-        <h1 class="title">Pokemons</h1>
+    return `       
         <ul class="grid pokemons-list">${pokemonsLi}</ul>
     `
 }

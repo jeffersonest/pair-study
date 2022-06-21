@@ -8,11 +8,15 @@ import { Pokemon } from "../types/pokemon.type";
             const API_URL: string = `https://pokeapi.co/api/v2/pokemon/${i}`;
             const response: any = await fetch(API_URL);
                 const pokeData: any = await response.json();
-                const { name, id } = pokeData;
+                console.log(pokeData);
+                const { name, id, weight, height, types } = pokeData;
                 pokemons.push( { 
                     name, 
                     id ,
-                    image: `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`
+                    image: `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`,
+                    weight,
+                    height,
+                    types,
                 })
         }
         return pokemons;

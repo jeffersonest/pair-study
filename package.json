@@ -1,0 +1,20 @@
+{
+  "name": "genericApiPublic",
+  "version": "1.0.0",
+  "description": "",
+  "source": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html",
+    "build": "parcel src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^2.6.1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.6.1"
+  }
+}

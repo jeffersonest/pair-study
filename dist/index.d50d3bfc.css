@@ -1,0 +1,61 @@
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap-grid.min.css";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.pokemons-list {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+}
+
+.pokemon-item {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.pokemon-item-header {
+  min-height: 30px;
+  width: 100%;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  display: flex;
+}
+
+.pokemon-item-id {
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  background: red;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  display: flex;
+}
+
+.pokemon-item-name {
+  text-transform: capitalize;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.pokemon-item-image {
+  width: 150px;
+  height: 180px;
+}
+
+.shadow {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2.8px 2.2px #00000009, 0 6.7px 5.3px #0000000c, 0 12.5px 10px #0000000f, 0 22.3px 17.9px #00000012, 0 41.8px 33.4px #00000016, 0 100px 80px #0000001f;
+}
+
+/*# sourceMappingURL=index.d50d3bfc.css.map */

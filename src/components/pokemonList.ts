@@ -1,8 +1,23 @@
 import {Pokemon} from "../types/pokemon.type";
 import PokeballComponent from "./pokeball";
+import getPokemon from "../core/pokemon.service";
 
 
-export default function listComponent (pokemonList: Array <Pokemon>){
+export default async function listComponent (loader: Element, app: Element){
+
+    const params: any = new Proxy(new URLSearchParams(window.location.search),
+        {
+            get: (searchParams, prop) => searchParams.get('qtd'),
+        });
+    // Get the value of "some_key" in eg
+    // "https://example.com/?some_key=some_value"
+    let value = params.qtd;
+
+    loader.classList.add('show');
+
+    const pokemonList = await getPokemon(value === 0 ? 1 : value)
+
+    loader.classList.remove('show');
 
     let pokemonsLi: string = ``;
 

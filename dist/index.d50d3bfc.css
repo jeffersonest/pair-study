@@ -6,6 +6,45 @@
   font-family: Arial Black, serif;
 }
 
+body {
+  background-color: red;
+}
+
+.loader {
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+}
+
+@keyframes rotateBall {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader .pokeball-container {
+  animation-name: rotateBall;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+}
+
+#loader {
+  display: none;
+}
+
+#loader.show {
+  display: flex;
+}
+
 .pokemons-list {
   flex-wrap: wrap;
   justify-content: space-between;

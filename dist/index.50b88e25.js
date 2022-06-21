@@ -535,34 +535,37 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _pokemonList = require("./pokemonList");
 var _pokemonListDefault = parcelHelpers.interopDefault(_pokemonList);
-var _pokemonService = require("../core/pokemon.service");
-var _pokemonServiceDefault = parcelHelpers.interopDefault(_pokemonService);
 var _header = require("./header");
 var _headerDefault = parcelHelpers.interopDefault(_header);
+var _loaderComponent = require("./loaderComponent");
+var _loaderComponentDefault = parcelHelpers.interopDefault(_loaderComponent);
 (async ()=>{
+    const app = document.getElementById("app");
+    app.insertAdjacentElement("afterbegin", (0, _loaderComponentDefault.default)());
+    const loader = document.getElementById("loader");
+    app.insertAdjacentHTML("beforeend", `
+           ${(0, _headerDefault.default)()} 
+           ${await (0, _pokemonListDefault.default)(loader, app)}
+        `);
+})();
+
+},{"./pokemonList":"7legk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./header":"h4YWK","./loaderComponent":"i9cyE"}],"7legk":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _pokeball = require("./pokeball");
+var _pokeballDefault = parcelHelpers.interopDefault(_pokeball);
+var _pokemonService = require("../core/pokemon.service");
+var _pokemonServiceDefault = parcelHelpers.interopDefault(_pokemonService);
+async function listComponent(loader, app) {
     const params = new Proxy(new URLSearchParams(window.location.search), {
         get: (searchParams, prop)=>searchParams.get("qtd")
     });
     // Get the value of "some_key" in eg
     // "https://example.com/?some_key=some_value"
     let value = params.qtd;
-    if (value <= 0 && value >= 898) window.alert("insira uma quantidade valida");
-    else {
-        const pokemonList = await (0, _pokemonServiceDefault.default)(value === 0 ? 1 : value);
-        const app = document.getElementById("app");
-        app.insertAdjacentHTML("beforeend", `
-           ${(0, _headerDefault.default)()}
-           ${(0, _pokemonListDefault.default)(pokemonList)}
-        `);
-    }
-})();
-
-},{"./pokemonList":"7legk","../core/pokemon.service":"iXYt4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./header":"h4YWK"}],"7legk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _pokeball = require("./pokeball");
-var _pokeballDefault = parcelHelpers.interopDefault(_pokeball);
-function listComponent(pokemonList) {
+    loader.classList.add("show");
+    const pokemonList = await (0, _pokemonServiceDefault.default)(value === 0 ? 1 : value);
+    loader.classList.remove("show");
     let pokemonsLi = ``;
     pokemonList.map((pokemon)=>{
         pokemonsLi += `
@@ -584,7 +587,7 @@ function listComponent(pokemonList) {
 }
 exports.default = listComponent;
 
-},{"./pokeball":"dBbrk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dBbrk":[function(require,module,exports) {
+},{"./pokeball":"dBbrk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/pokemon.service":"iXYt4"}],"dBbrk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function PokeballComponent(_ballNumber) {
@@ -662,12 +665,35 @@ function headerComponent() {
         <header>
             <img src="" alt="Poké logo">
             <h1>Poké</h1>
-            
         </header>
     `;
 }
 exports.default = headerComponent;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["4hk3Q","8hIQG"], "8hIQG", "parcelRequiree784")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"i9cyE":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _pokeball = require("./pokeball");
+var _pokeballDefault = parcelHelpers.interopDefault(_pokeball);
+function LoaderComponent() {
+    let loader = document.createElement("div");
+    loader.classList.add("loader");
+    loader.classList.add("container");
+    loader.setAttribute("id", "loader");
+    loader.insertAdjacentHTML("beforeend", `
+        <div class="loader container">
+            <div class="loader">
+                ${(0, _pokeballDefault.default)("")}
+            </div>
+        </div>
+    `);
+    loader.addEventListener("data-change", (e)=>{
+        console.log("changed");
+    });
+    return loader;
+}
+exports.default = LoaderComponent;
+
+},{"./pokeball":"dBbrk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["4hk3Q","8hIQG"], "8hIQG", "parcelRequiree784")
 
 //# sourceMappingURL=index.50b88e25.js.map

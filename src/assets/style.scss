@@ -5,6 +5,48 @@
     box-sizing: border-box;
     font-family: "Arial Black", serif;
 }
+
+body {
+    background-color: red;
+}
+
+.loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+
+
+    @keyframes rotateBall {
+        from {
+            transform: rotate(0);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .pokeball-container {
+        animation-duration: 5s;
+        animation-name: rotateBall;
+        animation-iteration-count: infinite;
+        animation-direction: normal;
+    }
+
+}
+
+#loader {
+    display: none;
+
+    &.show {
+        display: flex;
+    }
+}
+
 .pokemons-list {
     display: flex;
     flex-wrap: wrap;
